@@ -152,3 +152,5 @@ subsets(Roachmodel1automate,statistic="adjr2",legend="bottom",main="Adjusted R^2
 After running the the code, I was able to get all 5 regressor models. The best 2 regressor models and the best model in general were Length 3 and Width, I judged the element regression models is by checking the adjusted R square values.
 
 ## Final Summary Statements
+
+In this assignment, I was able to compare regressor models for different types of fishes. For each fish I estimated the weight factor and compared the regressor models using the adjusted R square models to get the best 2 element regressor models. For Perch, the best 2 element regression models were height, weight, and width. For the Pike, the best 2 models were length 1 and 3. However, the best regressor models were length 1, 2, and 3 along with Height and Width. Finally for the Roach, the best 2 regressor models and the best model in general were Length 3 and Width. All models were judged by checking the adjusted R squared values.
