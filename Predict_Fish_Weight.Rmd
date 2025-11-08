@@ -119,8 +119,36 @@ After running the Pike, I was able to get that the best 2 regressor models were 
 
 ## Roach
 
+```{r}
+Roach <- filter(fish, Species == "Roach")
+Roach <- select(Roach, -Species) 
+```
+
 ### Best Models
 
+```{r}
+Roachmodel1 <- lm(Length1~ .,data=Roach)
+summary.lm(Roachmodel1)
+```
+
 ### Best Two regressor model
+
+```{r}
+library(leaps)
+Roachmodel1automate <-
+    regsubsets(Weight ~ .,
+               data = Roach,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+summary.Roach <- summary(Roachmodel1automate)
+as.data.frame(summary.Roach$outmat)
+library(car)
+subsets(Roachmodel1automate,statistic="adjr2",legend="bottom",main="Adjusted R^2")
+```
+
+After running the the code, I was able to get all 5 regressor models. The best 2 regressor models and the best model in general were Length 3 and Width, I judged the element regression models is by checking the adjusted R square values.
 
 ## Final Summary Statements
