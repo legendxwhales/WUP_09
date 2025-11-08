@@ -51,10 +51,37 @@ Whitefish <- select(Whitefish, -Species)
 
 ## Perch
 
+```{r}
+Perch <- filter(fish, Species == "Perch")
+Perch <- select(Perch, -Species) 
+```
+
 ### Best Models
+
+```{r}
+Perchmodel1 <- lm(Length1~ .,data=Perch)
+summary.lm(Perchmodel1)
+```
 
 ### Best Two regressor model
 
+```{r}
+library(leaps)
+Perchmodel1automate <-
+    regsubsets(Weight ~ .,
+               data = Perch,
+               nbest = 1,       # 1 best model for each number of predictors
+               nvmax = NULL,    # NULL for no limit on number of variables
+               force.in = NULL, force.out = NULL,
+               method = "exhaustive")
+
+summary.PERCH <- summary(Perchmodel1automate)
+as.data.frame(summary.PERCH$outmat)
+library(car)
+subsets(Perchmodel1automate,statistic="adjr2",legend="bottom",main="Adjusted R^2")
+```
+
+After running this code, I found the best single element regression model (Height), the best 2 element regression models (Height and Width), and I was also able to get the best 3, 4, and 5 elements regression models. Statistically, how I judged the element regression models is by checking the adjusted R square values.
 
 ## Pike
 
